@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
@@ -19,15 +22,17 @@ app.use(session({
 
 // Database Connection
 const conn = mysql.createConnection({
-  host: "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
-  user: "3M9H5Y1nTcJAw2z.root",
-  password: "QozIKO0hG76xzfO0",
-  database: "ContactManager",
-  ssl: {
-    rejectUnauthorized: false
-}
-});
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
 
+  
+  
 conn.connect((err) => {
   if (err) {
     console.error("Database connection failed:", err.message);

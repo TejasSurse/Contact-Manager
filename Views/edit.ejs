@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+
     <title>Edit - CMS</title>
     <style>
         /* Basic reset */
@@ -91,5 +94,19 @@
             <button type="submit">Edit</button>
         </form>
     </div>
+    <script>
+        // Check if the service worker is supported by the browser
+    if ('serviceWorker' in navigator) {
+      // Register the service worker
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registered with scope: ', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('Service Worker registration failed: ', error);
+        });
+    }
+    
+    </script>
 </body>
 </html>

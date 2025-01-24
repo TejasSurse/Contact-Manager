@@ -4,165 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#001f3f">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <title>Contacts</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa; /* Solid background color */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+    
+        /* Navbar Styling */
+        .navbar {
+            background: #001f3f;
+            padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .navbar-brand:hover {
+            transform: scale(1.1);
+        }
+    
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+    
+        .navbar-nav .nav-link:hover {
+            color: #80deea;
+        }
+    
+        .btn-outline-light {
+            border-color: #80deea;
+            color: #80deea;
+        }
+    
+        .btn-outline-light:hover {
+            background-color: #80deea;
+            color: #001f3f;
+        }
+    
+        /* Search Bar Styling */
+        #searchInput {
+            border: 1px solid #80deea;
+            border-radius: 20px;
+            padding: 10px 20px;
+            outline: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+    
+        #searchInput:focus {
+            box-shadow: 0 0 10px rgba(0, 51, 102, 0.5);
+            transform: scale(1.05);
+        }
+    
+        /* Table Styling */
+        .table {
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .table th {
+            background: #001f3f;
+            color: #ffffff;
+            text-align: center;
+        }
+    
+        .table td, .table th {
+            text-align: center;
+            padding: 15px;
+            vertical-align: middle;
+        }
+    
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1; /* Light hover color */
+        }
+    
+        /* Button Styling */
+        .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .btn-outline-dark {
+            border-color: #001f3f;
+            color: #001f3f;
+        }
+    
+        .btn-outline-dark:hover {
+            background-color: #001f3f;
+            color: #ffffff;
+        }
+    
+        .btn-outline-danger {
+            border-color: #d32f2f;
+            color: #d32f2f;
+        }
+    
+        .btn-outline-danger:hover {
+            background-color: #d32f2f;
+            color: #ffffff;
+        }
+    
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+    
+        /* Search Results Styling */
+        #searchResults {
+            display: none;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            margin-top: 10px;
+        }
+    
+        .contact-result {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+    
+        .contact-result:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+    
 </head>
-<style>
-    /* General Styling */
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(to bottom, #e0f7fa, #80deea);
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Navbar Styling */
-    .navbar {
-        background: #003366;
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar-brand {
-        font-weight: bold;
-        color: #fff;
-        font-size: 1.8rem;
-        transition: transform 0.3s ease;
-    }
-
-    .navbar-brand:hover {
-        transform: scale(1.1);
-    }
-
-    .navbar-nav .nav-link {
-        font-size: 1rem;
-        color: #fff;
-        margin-right: 10px;
-        transition: color 0.3s ease;
-    }
-
-    .navbar-nav .nav-link:hover {
-        color: #80deea;
-    }
-
-    .btn-outline-light {
-        border-color: #80deea;
-        color: #80deea;
-    }
-
-    .btn-outline-light:hover {
-        background-color: #80deea;
-        color: #003366;
-    }
-
-    /* Search Bar Styling */
-    #searchInput {
-        border: none;
-        border-radius: 20px;
-        padding: 10px 20px;
-        outline: none;
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
-    }
-
-    #searchInput:focus {
-        box-shadow: 0 0 10px rgba(0, 51, 102, 0.5);
-        transform: scale(1.05);
-    }
-
-    /* Table Styling */
-    .table {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .table th {
-        background: #003366;
-        color: #fff;
-        text-align: center;
-    }
-
-    .table td, .table th {
-        text-align: center;
-        padding: 15px;
-        vertical-align: middle;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #e0f7fa;
-    }
-
-    /* Button Styling */
-    .btn {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-outline-dark {
-        border-color: #003366;
-        color: #003366;
-    }
-
-    .btn-outline-dark:hover {
-        background-color: #003366;
-        color: #fff;
-    }
-
-    .btn-outline-danger {
-        border-color: #d32f2f;
-        color: #d32f2f;
-    }
-
-    .btn-outline-danger:hover {
-        background-color: #d32f2f;
-        color: #fff;
-    }
-
-    /* Fade-in Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .fade-in {
-        animation: fadeIn 1s ease;
-    }
-
-    /* Search Results Styling */
-    #searchResults {
-        display: none;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    .contact-result {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        transition: background-color 0.3s ease;
-    }
-
-    .contact-result:hover {
-        background-color: #f1f1f1;
-    }
-</style>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
@@ -172,13 +173,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav">
-                    <a class="nav-link" href="/addcontact">Add Contact</a>
-                    <a class="nav-link" href="/contacts">View Contacts</a>
-                    <a class="nav-link btn btn-outline-light ms-auto" href="/logout">Log Out</a>
-                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/addcontact">Add Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contacts">View Contacts</a></li>
+                </ul>
                 <div class="d-flex ms-auto">
                     <input id="searchInput" type="text" class="form-control" placeholder="Search Contacts..." oninput="searchContacts()">
+                    <a class="btn btn-outline-light ms-2" href="/logout">Log Out</a>
                 </div>
             </div>
         </div>
@@ -186,7 +187,7 @@
     
     <!-- Container for search results -->
     <div id="searchResults" class="fade-in">
-        <!-- Results will be populated dynamically -->
+        <!-- Results will be dynamically populated -->
     </div>
 
     <!-- Contacts Table -->

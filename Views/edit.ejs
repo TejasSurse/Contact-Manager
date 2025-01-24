@@ -4,77 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#000000">
-
-    <title>Edit - CMS</title>
+    <meta name="theme-color" content="#001f3f">
+    <title>Edit Contact - CMS</title>
     <style>
-        /* Basic reset */
+        /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f3f4f6;
+            background-color: #f8f9fa;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #001f3f;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 30px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         label {
             font-size: 1rem;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             display: block;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             font-size: 1rem;
             margin-bottom: 20px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             outline: none;
-            transition: border-color 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
         input[type="text"]:focus {
-            border-color: #6c63ff;
+            border-color: #001f3f;
+            box-shadow: 0px 4px 12px rgba(0, 31, 63, 0.3);
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             font-size: 1rem;
-            color: #fff;
-            background-color: #6c63ff;
+            color: #ffffff;
+            background-color: #001f3f;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
         button:hover {
-            background-color: #574bfa;
+            background-color: #003366;
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(0, 31, 63, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -86,27 +101,26 @@
             <input type="hidden" name="oldPhone" value="<%= contact.contact %>">
 
             <label for="name">Name:</label>
-            <input type="text" value="<%= contact.name %>" name="name" id="name">
+            <input type="text" value="<%= contact.name %>" name="name" id="name" required>
             
             <label for="phone">Phone:</label>
-            <input type="text" value="<%= contact.contact %>" name="phone" id="phone">
+            <input type="text" value="<%= contact.contact %>" name="phone" id="phone" required>
             
-            <button type="submit">Edit</button>
+            <button type="submit">Save Changes</button>
         </form>
     </div>
+
     <script>
         // Check if the service worker is supported by the browser
-    if ('serviceWorker' in navigator) {
-      // Register the service worker
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(function(registration) {
-          console.log('Service Worker registered with scope: ', registration.scope);
-        })
-        .catch(function(error) {
-          console.log('Service Worker registration failed: ', error);
-        });
-    }
-    
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed: ', error);
+                });
+        }
     </script>
 </body>
 </html>

@@ -11,93 +11,124 @@
     <title>Contacts</title>
 </head>
 <style>
-    /* General styling */
+    /* General Styling */
     body {
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(to bottom, #ff7eb3, #ff758c);
+        background: linear-gradient(to bottom, #e0f7fa, #80deea);
         color: #333;
         margin: 0;
         padding: 0;
     }
 
-    /* Navbar styling */
+    /* Navbar Styling */
     .navbar {
-        background: #333;
+        background: #003366;
         padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .navbar-brand {
         font-weight: bold;
         color: #fff;
         font-size: 1.8rem;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+        transform: scale(1.1);
     }
 
     .navbar-nav .nav-link {
         font-size: 1rem;
         color: #fff;
-        transition: all 0.3s ease-in-out;
+        margin-right: 10px;
+        transition: color 0.3s ease;
     }
 
     .navbar-nav .nav-link:hover {
-        color: #ff758c;
-        transform: scale(1.1);
+        color: #80deea;
     }
 
-    /* Search input styling */
+    .btn-outline-light {
+        border-color: #80deea;
+        color: #80deea;
+    }
+
+    .btn-outline-light:hover {
+        background-color: #80deea;
+        color: #003366;
+    }
+
+    /* Search Bar Styling */
     #searchInput {
         border: none;
         border-radius: 20px;
         padding: 10px 20px;
         outline: none;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     #searchInput:focus {
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 10px rgba(0, 51, 102, 0.5);
         transform: scale(1.05);
     }
 
-    /* Table styling */
+    /* Table Styling */
     .table {
         background: white;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
         overflow: hidden;
-        animation: fadeInUp 1s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .table th {
-        background-color: #ff758c;
+        background: #003366;
         color: #fff;
-        font-size: 1rem;
+        text-align: center;
     }
 
     .table td, .table th {
         text-align: center;
-        vertical-align: middle;
         padding: 15px;
+        vertical-align: middle;
     }
 
-    /* Button animations */
+    .table-hover tbody tr:hover {
+        background-color: #e0f7fa;
+    }
+
+    /* Button Styling */
     .btn {
-        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-outline-dark {
+        border-color: #003366;
+        color: #003366;
     }
 
     .btn-outline-dark:hover {
-        background-color: #333;
+        background-color: #003366;
         color: #fff;
-        transform: translateY(-2px);
+    }
+
+    .btn-outline-danger {
+        border-color: #d32f2f;
+        color: #d32f2f;
     }
 
     .btn-outline-danger:hover {
-        background-color: #ff758c;
+        background-color: #d32f2f;
         color: #fff;
-        transform: translateY(-2px);
     }
 
-    /* Fade-in animation */
-    @keyframes fadeInUp {
+    /* Fade-in Animation */
+    @keyframes fadeIn {
         from {
             opacity: 0;
             transform: translateY(20px);
@@ -108,23 +139,28 @@
         }
     }
 
-    /* Search results styling */
+    .fade-in {
+        animation: fadeIn 1s ease;
+    }
+
+    /* Search Results Styling */
     #searchResults {
         display: none;
         background-color: #fff;
         border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         padding: 10px;
-        animation: fadeInUp 0.5s;
+        margin-top: 10px;
     }
 
     .contact-result {
         padding: 10px;
         border-bottom: 1px solid #ddd;
+        transition: background-color 0.3s ease;
     }
 
-    .contact-result:last-child {
-        border-bottom: none;
+    .contact-result:hover {
+        background-color: #f1f1f1;
     }
 </style>
 <body>
@@ -142,7 +178,6 @@
                     <a class="nav-link btn btn-outline-light ms-auto" href="/logout">Log Out</a>
                 </div>
                 <div class="d-flex ms-auto">
-                    <!-- Search Input -->
                     <input id="searchInput" type="text" class="form-control" placeholder="Search Contacts..." oninput="searchContacts()">
                 </div>
             </div>
@@ -150,12 +185,12 @@
     </nav>
     
     <!-- Container for search results -->
-    <div id="searchResults" class="mt-3">
-        <!-- Results will be populated dynamically here -->
+    <div id="searchResults" class="fade-in">
+        <!-- Results will be populated dynamically -->
     </div>
 
     <!-- Contacts Table -->
-    <div class="container mt-4">
+    <div class="container mt-4 fade-in">
         <h2 class="text-center mb-4">Contacts List</h2>
         <table class="table table-bordered table-hover">
             <thead>

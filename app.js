@@ -114,6 +114,7 @@ app.post("/contact", (req, res) => {
   if (!req.session.email) {
       return res.redirect("/");
   }
+  console.log(req.body);
 
   const { name, contact } = req.body;
 
